@@ -40,9 +40,9 @@ const bootstrap = (app, express) => {
   app.use("/users", userRouter);
   app.use("/messages", messageRouter);
 
-  app.get("/", (req, res) => {
-    res.json({ message: "Welcome on my app 💙" });
-  });
+  // app.get("/", (req, res) => {
+  //   res.json({ message: "Welcome on my app 💙" });
+  // });
   app.all("/*demo", (req, res, next) => {
     throw new Error("Page is not found", { cause: 404 });
   });
