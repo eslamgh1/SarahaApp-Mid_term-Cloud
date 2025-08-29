@@ -4,6 +4,8 @@ import { authentication } from "../../Middlewares/authentication.js";
 import { validation } from "../../Middlewares/valiadation.js";
 import * as userValidatiom from "./user.validation.js";
 import {allowedExtension, MulterHost} from "../../Middlewares/Multer.middlewares.js";
+import { userRole } from "../../DB/Models/user.model.js";
+import { authorization } from "../../Middlewares/authorization.js";
 
 
 const userRouter = Router();
@@ -31,6 +33,7 @@ userRouter.post(
 );
 userRouter.post("/login/login-gmail", userServices.loginWithGmail);
 userRouter.get("/getuser", authentication, userServices.getUser);
+// userRouter.get("/getuser", authentication,authorization([userRole.admin]), userServices.getUser);
 userRouter.get("/confirmemail/:token", userServices.confirmEmail);
 userRouter.post("/logout", authentication, userServices.logOutAction);
 userRouter.get("/refreshtoken", userServices.refreshToken);
